@@ -3,9 +3,24 @@ aca_shop_homepage:
     defaults: { _controller: AcaShopBundle:Default:index }
 
 aca_login_route:
-    path:   /login_form
-    defaults: { _controller: AcaShopBundle:Login:loginForm }
-    methods: [GET, POST]
+    path:   /login
+    defaults: { _controller: AcaShopBundle:Login:login }
+    methods: [POST]
+
+aca_logout_route:
+    path:   /logout
+    defaults: { _controller: AcaShopBundle:Login:logout }
+    methods: [POST]
+
+aca_products_route:
+    path: /products
+    defaults: { _controller: AcaShopBundle:Product:showAll }
+    methods: [GET]
+
+aca_product_page_route:
+    path: /products/{product}
+    defaults: { _controller: AcaShopBundle:Product:productPage }
+    methods: [GET]
 
 
 

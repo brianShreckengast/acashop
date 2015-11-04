@@ -19,7 +19,7 @@ class LoginController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function loginFormAction(Request $request)
+    public function loginAction(Request $request)
     {
 
         $msg = null;
@@ -38,7 +38,7 @@ class LoginController extends Controller
                 and password = "' . $password . '"';
             $db = new Database();
             $data = $db->fetchRowMany($query);
-            if (empty($data) && $request->getMethod() == 'POST') { // Invalid login
+            if (empty($data)) { // Invalid login
                 $msg = 'Please check your credentials';
                 $session->set('loggedIn', false);
                 $session->save();
@@ -73,7 +73,7 @@ class LoginController extends Controller
         $session->remove('loggedIn');
         $session->remove('name');
         $session->save();
-        return new RedirectResponse('/login_form');
+        return new RedirectResponse('/');
     }
     /**
      * Get a vaid started session
