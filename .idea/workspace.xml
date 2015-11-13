@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f598726-657b-45cf-98c0-22c11bda35e9" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Aca/Bundle/ShopBundle/Resources/public/css/bootstrap.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Aca/Bundle/ShopBundle/Resources/public/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Aca/Bundle/ShopBundle/Resources/public/css/heroic-features.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Aca/Bundle/ShopBundle/Resources/public/js/bootstrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Aca/Bundle/ShopBundle/Resources/public/js/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Aca/Bundle/ShopBundle/Resources/public/js/jquery.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
     <ignored path="acashop.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -150,18 +144,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="registration.form.html.twig" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Aca/Bundle/ShopBundle/Resources/views/Registration/registration.form.html.twig">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.115385">
-              <caret line="33" column="31" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="31" />
-              <folding>
-                <element signature="e#13#29#0#Twig" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -202,6 +184,7 @@
         <option value="$PROJECT_DIR$/src/Aca/Bundle/ShopBundle/Controller/CartController.php" />
         <option value="$PROJECT_DIR$/src/Aca/Bundle/ShopBundle/Resources/views/Cart/show.cart.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -1291,6 +1274,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-14.038462">
           <caret line="25" column="63" selection-start-line="25" selection-start-column="63" selection-end-line="25" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.17926186">
+          <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
           <folding />
         </state>
       </provider>
