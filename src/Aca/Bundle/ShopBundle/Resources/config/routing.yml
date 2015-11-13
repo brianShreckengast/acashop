@@ -2,6 +2,11 @@ aca_shop_homepage:
     path:     /
     defaults: { _controller: AcaShopBundle:Default:index }
 
+aca_login_form_route:
+    path:   /login
+    defaults: { _controller: AcaShopBundle:Login:loginForm }
+    methods: [GET]
+
 aca_login_route:
     path:   /login
     defaults: { _controller: AcaShopBundle:Login:login }
@@ -10,7 +15,7 @@ aca_login_route:
 aca_logout_route:
     path:   /logout
     defaults: { _controller: AcaShopBundle:Login:logout }
-    methods: [POST]
+    methods: [POST, GET]
 
 aca_products_route:
     path: /products
@@ -22,5 +27,37 @@ aca_product_page_route:
     defaults: { _controller: AcaShopBundle:Product:productPage }
     methods: [GET]
 
+aca_cart:
+    path: /cart
+    defaults: { _controller: AcaShopBundle:Cart:showCart }
+    methods: [GET]
 
+aca_add_cart:
+    path: /add-to-cart
+    defaults: { _controller: AcaShopBundle:Cart:addToCart }
+    methods: [POST]
 
+aca_registration_form:
+    path: /register
+    defaults: { _controller: AcaShopBundle:Registration:registrationForm }
+    methods: [GET]
+
+aca_register_user:
+    path: /register
+    defaults: { _controller: AcaShopBundle:Registration:registerUser }
+    methods: [POST]
+
+aca_account_page:
+    path: /account
+    defaults: { _controller: AcaShopBundle:Account:showAccountPage }
+    methods: [GET]
+
+aca_change_item_quantity:
+    path: /change-item-quantity
+    defaults: { _controller: AcaShopBundle:Cart:changeItemQuantity }
+    methods: [POST]
+
+aca_remove_cart_item:
+    path: /remove-cart-item
+    defaults: { _controller: AcaShopBundle:Cart:removeCartItem }
+    methods: [POST]

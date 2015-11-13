@@ -1,0 +1,47 @@
+{%  extends '::base.html.twig' %}
+
+{%  block content %}
+    <h1>Shopping Cart</h1>
+    {% if cartItems is defined %}
+        <table>
+        {% for cartItem in cartItems %}
+
+            <tr>
+             <td><img width = 100px src="{{ cartItem.image }}"></td>
+            <td><a href = "/products/{{ cartItem.uri }}">{{ cartItem.name }}</a></td>
+                <td>Price: {{ cartItem.price }}</td>
+                <td>Quantity: {{ cartItem.quantity }}</td>
+                <td><form action = "/change-item-quantity" method = "POST">
+                    <select name="new_quantity">
+
+                        {% for i in 1..10 %}
+                            {% if i == cartItem.quantity %}
+                                <option selected value="{{ i }}">{{ i }}</option>
+                            {% else %}
+                                <option value="{{ i }}">{{ i }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                    <input type = "hidden" name ="product_id" value ="{{ cartItem.id }}">
+                    <input type = "submit" name = "change_quantity" value = "Change Quantity"></td>
+                </form>
+                    <td>
+                        <form action = "/remove-cart-item" method = "POST">
+                            <input type = "hidden" name = "product_id" value = "{{ cartItem.id }}">
+                            <input type = "submit" name = "remove" value = "Remove">
+                        </form>
+                    </td>
+            </tr>
+
+        {%  endfor %}
+        </table>
+    {% endif %}
+    {% if emptyCart is defined %}
+        <p>Your Cart is Empty</p>
+    {% endif %}
+    {% if notLoggedIn is defined %}
+        <p>Please <a href="/login">Log in</a> to view your cart.</p>
+    {% endif %}
+
+
+{%  endblock %}

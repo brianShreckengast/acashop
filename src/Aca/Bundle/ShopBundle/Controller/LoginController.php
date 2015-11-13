@@ -8,60 +8,60 @@
 
 namespace Aca\Bundle\ShopBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Aca\Bundle\ShopBundle\Db\Database;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class LoginController extends Controller
 {
+    public function loginFormAction()
+    {
+
+        return $this->render('AcaShopBundle:LoginForm:login.form.html.twig');
+    }
+
     /**
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function loginAction(Request $request)
     {
-
-        $msg = null;
-        $session = $this->getSession();
         $username = $request->get('username');
         $password = $request->get('password');
 
         if (!empty($username) && !empty($password)) {
-            $query = '
-            select
-                *
-            from
-                aca_user
-            where
-                username = "' . $username . '"
-                and password = "' . $password . '"';
-            $db = new Database();
-            $data = $db->fetchRowMany($query);
-            if (empty($data)) { // Invalid login
-                $msg = 'Please check your credentials';
-                $session->set('loggedIn', false);
-                $session->save();
-            } else { // Valid login
-                $row = array_pop($data);
-                $name = $row['name']; // person's name
-                $session->set('loggedIn', true);
-                $session->set('name', $name);
+
+            $userService = $this->get('user');
+
+            $userId = $userService->userVerification($username, $password);
+
+            if ($userId) {
+
+                //fetch user data
+                $userdata = $userService->fetchUserRow($userId);
+                //get session object
+                $session = $this->getSession();
+
+                $userService->setUserSession($userdata);
+
+                return $this->render('AcaShopBundle:LoginForm:login.form.html.twig',
+                    array('user' => $userdata, 'loggedIn' => true));
+
+            } else { // Invalid login
+
+                return $this->render('AcaShopBundle:LoginForm:login.form.html.twig',
+                    array('message' => "Invalid Login!", 'username' => $username, 'password' => $password));
+
             }
         }
-        $session->save();
-        $loggedIn = $session->get('loggedIn');
-        $name = $session->get('name');
-        return $this->render(
-            'AcaShopBundle:LoginForm:login.form.html.twig',
-            array(
-                'loggedIn' => $loggedIn,
-                'name' => $name,
-                'msg' => $msg,
-                'username' => $username,
-                'password' => $password
-            )
-        );
+        else { //one of fields was empty
+
+            return $this->render('AcaShopBundle:LoginForm:login.form.html.twig',
+                array('username' => $username, 'password' => $password, 'message' => "You're missing something!"));
+
+        }
+
+
     }
     /**
      * Handle logout business logic
@@ -72,8 +72,10 @@ class LoginController extends Controller
         $session = $this->getSession();
         $session->remove('loggedIn');
         $session->remove('name');
+        $session->remove('username');
+        $session->remove('user_id');
         $session->save();
-        return new RedirectResponse('/');
+        return new RedirectResponse('/login');
     }
     /**
      * Get a vaid started session

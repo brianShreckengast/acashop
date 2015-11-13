@@ -1,28 +1,41 @@
-{#We want the form to be hidden when a person is logged in#}
-{#We want a welcome message to show up when they are logged in#}
-{#We also want a logout button to show up when they are logged in#}
+{%  extends '::base.html.twig' %}
 
-{% if loggedIn %}
+{%  block content %}
 
-    Welcome {{ name }}
-    <form action="/logout" method="post">
-        <input type="submit" value="Logout"/>
-    </form>
 
-{% else %}
+{% if loggedIn is defined %}
 
-    {% if msg %}
-        <span style="color:red">{{ msg }}</span>
+    {% if loggedIn == true %}
+
+        You're logged in, {{ user.name }}!
+        <form action="/logout" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+
+    {% else %}
+
+        <span style="color:red;">Invalid Login</span>
+
     {% endif %}
+{%  else %}
 
-    <form action="/login_form" method="post">
 
-        Username: <input type="text" name="username" value="{{ username }}"/>
+    <form action="/login" method="post">
+
+        Username: <input type="text" name="username" {% if username is defined %}value="{{ username }}"{% endif %}/>
         <br/>
-        Password: <input type="password" name="password" value="{{ password }}"/>
+        Password: <input type="password" name="password" {% if password is defined %}value="{{ password }}"{% endif %}/>
         <br/>
 
         <input type="submit" value="Login"/>
     </form>
 
 {% endif %}
+
+    {% if message is defined %}
+
+        <span style="color:red;">{{ message }}</span>
+    {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{%  extends '::base.html.twig' %}
+
+{%  block content %}
+
+<h1>Register</h1>
+
+    <form action = "/register" method = "POST">
+        <p>First Name: <input type = "text" name = "first_name"></p>
+        <p>Username: <input type = "text" name = "username"></p>
+        <p>Password: <input type = "text" name = "password"></p>
+        <p>Billing Address</p>
+        <p>Street: <input type = "text" name = "billing_street"></p>
+        <p>City: <input type = "text" name = "billing_city"></p>
+        <p>State: <input type = "text" name = "billing_state"></p>
+        <p>ZIP: <input type = "text" name = "billing_zip"></p>
+        <p>Shiping Address:</p>
+        <p>Street: <input type = "text" name = "shipping_street"></p>
+        <p>City: <input type = "text" name = "shipping_city"></p>
+        <p>State: <input type = "text" name = "shipping_state"></p>
+        <p>ZIP: <input type = "text" name = "shipping_zip"></p>
+        <input type ="submit" name ="submit" value = "Register">
+    </form>
+    {% if userExists is defined %}
+
+        <span style="color:red;">Please choose another username</span>
+
+    {%  endif %}
+    {% if missingValue is defined %}
+
+        <span style="color:red;">Please complete all fields</span>
+
+    {%  endif %}
+
+    {% if created is defined %}
+
+        <p><b>You've created an account!</b></p>
+
+        {%  endif %}
+
+{% endblock %}

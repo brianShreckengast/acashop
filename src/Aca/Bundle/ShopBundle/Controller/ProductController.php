@@ -11,7 +11,7 @@ class ProductController extends Controller
 
     public function showAllAction(){
 
-        $db = new Database;
+        $db = $this->get('acadb');
 
         $query = "select * from aca_product;";
         $productRows = $db->fetchRowMany($query);
@@ -23,10 +23,8 @@ class ProductController extends Controller
 
     public function productPageAction($product){
 
-        $db = new Database;
-        $query = "select * from aca_product where uri = '$product' LIMIT 1;";
-        $prod = $db->fetchRowMany($query);
-        $prod =array_pop($prod);
+        $db = $this->get('acadb');
+        $prod = $db->fetchRow("select * from aca_product where uri = '$product';");
 
         return $this->render('AcaShopBundle:Product:productPage.html.twig',
             array('product' => $prod));
